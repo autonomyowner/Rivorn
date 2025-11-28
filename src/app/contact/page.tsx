@@ -6,7 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { MessageSquare, Phone, Instagram, MapPin, Clock, ShieldCheck, Send } from "lucide-react";
+import { MessageSquare, Phone, MapPin, Clock, ShieldCheck, Send } from "lucide-react";
 import Container from "@/components/Container";
 import Section from "@/components/Section";
 import Reveal from "@/components/Reveal";
@@ -39,13 +39,6 @@ const contactMethods = [
     description: "Du lundi au samedi, 9h - 22h.",
     value: siteConfig.phone,
     href: `tel:${siteConfig.phone}`,
-  },
-  {
-    icon: Instagram,
-    label: "Instagram",
-    description: "Suivez les drops et DM pour precommandes.",
-    value: "@oussaura.boutique",
-    href: siteConfig.instagramLink,
   },
 ];
 
