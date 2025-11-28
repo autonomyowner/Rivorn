@@ -11,7 +11,7 @@ const partnerTiers = [
     name: "Starter stockist",
     price: "150 000 DZD",
     description: "Pack d entree pour concept stores et boutiques locales.",
-    includes: ["30 montres mix marques", "Présentoir DNA WATCHES", "Supports visuels digitaux", "Formation équipe 30 min"],
+    includes: ["30 montres mix marques", "Présentoir Rivorn", "Supports visuels digitaux", "Formation équipe 30 min"],
   },
   {
     name: "Pro retailer",
@@ -33,7 +33,7 @@ const partnerTiers = [
     includes: [
       "Capsule personnalisee",
       "Design exclusif avec notre studio",
-      "Événement pop-up DNA WATCHES",
+      "Événement pop-up Rivorn",
       "Suivi logistique dedie",
       "Pack media complet",
     ],
@@ -64,8 +64,8 @@ const logisticsPerks = [
 ];
 
 export const metadata = {
-  title: "Partenariats retail - DNA WATCHES Magasin",
-  description: "Programmes grossistes DNA WATCHES Magasin pour distributeurs bijoux et montres en Algérie.",
+  title: "Partenariats retail - Rivorn Luxury Watches",
+  description: "Rivorn wholesale programs for jewelry and watch distributors in Algeria.",
 };
 
 export default function PartnershipsPage(): ReactElement {
@@ -81,7 +81,7 @@ export default function PartnershipsPage(): ReactElement {
                 <span className="h-2 w-2 rounded-full bg-[#d21034]" />
               </div>
               <h1 className="text-4xl font-semibold uppercase tracking-[0.25em] sm:text-5xl">
-                Devenir partenaire DNA WATCHES
+                Become a Rivorn Partner
               </h1>
               <p className="text-sm leading-relaxed text-white/70 sm:text-base">
                 Rejoignez le réseau de boutiques qui distribuent nos montres originales. Packs adaptés à votre taille,
@@ -195,7 +195,7 @@ export default function PartnershipsPage(): ReactElement {
             <div className="rounded-[36px] border border-white/10 bg-white/5 p-8 text-center">
               <div className="text-xs uppercase tracking-[0.35em] text-white/50">Next step</div>
               <h2 className="mt-4 text-3xl font-semibold uppercase tracking-[0.25em] text-white sm:text-4xl">
-                Lancez DNA WATCHES dans votre boutique
+                Launch Rivorn in your store
               </h2>
               <p className="mt-4 text-sm text-white/70 sm:text-base">
                 Nous préparons les assortiments, le merchandising et le plan marketing. Il ne vous reste qu&apos;à prendre la

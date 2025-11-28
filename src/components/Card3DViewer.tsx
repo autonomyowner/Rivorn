@@ -179,10 +179,10 @@ export default function Card3DViewer(): ReactElement {
   const sampleContent = {
     name: "Oussama A.",
     title: "Creative Director",
-    company: "DNA WATCHES Magasin",
+    company: "Rivorn Luxury Watches",
     phone: "+213 561 218 586",
-    email: "support@oussaura.com",
-    website: "www.oussaura.com"
+    email: "contact@rivorn.com",
+    website: "www.rivorn.com"
   };
 
   const handleFlip = () => {
@@ -356,7 +356,7 @@ export default function Card3DViewer(): ReactElement {
                         <Sparkles className={`w-8 h-8 ${currentTemplate.accentColor}`} />
                       </div>
                       <h4 className={`${currentTemplate.textColor} text-lg font-bold tracking-widest card-text-smooth`} style={{ textShadow: '0 1px 3px rgba(0,0,0,0.5)' }}>
-                        DNA WATCHES MAGASIN
+                        RIVORN LUXURY
                       </h4>
                     </div>
                     

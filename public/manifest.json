@@ -1,7 +1,7 @@
 {
-  "name": "DNA WATCHES Magasin de bijoux et de montres",
-  "short_name": "DNA WATCHES",
-  "description": "DNA WATCHES Magasin propose des montres originales et bijoux premium livrés dans les 58 wilayas.",
+  "name": "Rivorn - Luxury Watches",
+  "short_name": "Rivorn",
+  "description": "Rivorn offers luxury watches and premium jewelry delivered to all 58 wilayas.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#050505",

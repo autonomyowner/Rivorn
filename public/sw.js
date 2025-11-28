@@ -1,7 +1,7 @@
-// Service Worker for caching DNA WATCHES assets
-const CACHE_NAME = 'dnawatches-pages-v1';
-const STATIC_CACHE = 'dnawatches-static-v1';
-const IMAGE_CACHE = 'dnawatches-images-v1';
+// Service Worker for caching Rivorn assets
+const CACHE_NAME = 'rivorn-pages-v1';
+const STATIC_CACHE = 'rivorn-static-v1';
+const IMAGE_CACHE = 'rivorn-images-v1';
 
 const STATIC_ASSETS = [
   '/',

@@ -1,125 +1,108 @@
 import type { ReactElement } from "react";
-import { Instagram, Facebook, MessageSquare, MapPin, Phone, Package, Clock, Send } from "lucide-react";
+import Link from "next/link";
 import Container from "./Container";
 import { siteConfig } from "@/config/site";
 
 const quickLinks = [
   { href: "/collection", label: "Collection" },
-  { href: "/about", label: "La marque" },
-  { href: "/shipping", label: "Livraison & retours" },
+  { href: "/shipping", label: "Livraison" },
   { href: "/contact", label: "Contact" },
 ];
 
 export default function Footer(): ReactElement {
   return (
-    <footer className="border-t border-white/10 bg-black/95 text-white">
+    <footer className="border-t border-white/5 bg-black text-white">
       <Container>
-        <div className="grid gap-12 py-16 md:grid-cols-5">
-          <div className="md:col-span-2 space-y-6">
-            <div className="space-y-2">
-              <span className="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-white/70">
-                DNA WATCHES
-              </span>
-              <h3 className="text-2xl font-bold uppercase tracking-[0.25em]">Magasin</h3>
-            </div>
-            <p className="text-sm leading-relaxed text-white/70">{siteConfig.description}</p>
-            <div className="flex items-center gap-4">
-              <a
-                href={siteConfig.whatsappLink}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 transition-colors duration-200 hover:border-white hover:bg-white hover:text-black"
-              >
-                <MessageSquare className="h-4 w-4" aria-hidden />
-              </a>
-              <a
-                href={siteConfig.instagramLink}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 transition-colors duration-200 hover:border-white hover:bg-white hover:text-black"
-              >
-                <Instagram className="h-4 w-4" aria-hidden />
-              </a>
-              <a
-                href={siteConfig.facebookLink}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 transition-colors duration-200 hover:border-white hover:bg-white hover:text-black"
-              >
-                <Facebook className="h-4 w-4" aria-hidden />
-              </a>
-            </div>
+        <div className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4 lg:py-16">
+          {/* Brand */}
+          <div className="sm:col-span-2 lg:col-span-1">
+            <Link href="/" className="text-lg font-semibold tracking-tight">
+              Rivorn
+            </Link>
+            <p className="mt-3 max-w-xs text-sm text-white/50">
+              Montres originales avec garantie. Livraison 58 wilayas.
+            </p>
           </div>
 
-          <div className="space-y-6">
-            <h4 className="text-sm font-semibold uppercase tracking-[0.25em] text-white/60">Navigation</h4>
-            <ul className="space-y-3 text-sm text-white/70">
+          {/* Navigation */}
+          <div>
+            <h4 className="text-sm font-medium text-white/40">Navigation</h4>
+            <ul className="mt-4 space-y-2">
               {quickLinks.map((item) => (
                 <li key={item.href}>
-                  <a href={item.href} className="transition-colors duration-150 hover:text-white">
+                  <Link
+                    href={item.href}
+                    className="text-sm text-white/60 transition-colors hover:text-white"
+                  >
                     {item.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="space-y-6">
-            <h4 className="text-sm font-semibold uppercase tracking-[0.25em] text-white/60">Livraison</h4>
-            <ul className="space-y-4 text-sm text-white/70">
-              <li className="flex items-start gap-3">
-                <Package className="mt-1 h-4 w-4 text-white/50" aria-hidden />
-                <span>Livraison express dans les 58 wilayas</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <Clock className="mt-1 h-4 w-4 text-white/50" aria-hidden />
-                <span>Expedition 24/48h sur stock</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <Send className="mt-1 h-4 w-4 text-white/50" aria-hidden />
-                <span>Suivi de commande en temps reel</span>
-              </li>
-            </ul>
-          </div>
-
-          <div className="space-y-6">
-            <h4 className="text-sm font-semibold uppercase tracking-[0.25em] text-white/60">Contact</h4>
-            <ul className="space-y-4 text-sm text-white/70">
-              <li className="flex items-start gap-3">
-                <Phone className="mt-1 h-4 w-4 text-white/50" aria-hidden />
-                <a href={`tel:${siteConfig.phone}`} className="transition-colors duration-150 hover:text-white">
+          {/* Contact */}
+          <div>
+            <h4 className="text-sm font-medium text-white/40">Contact</h4>
+            <ul className="mt-4 space-y-2 text-sm text-white/60">
+              <li>
+                <a href={`tel:${siteConfig.phone}`} className="transition-colors hover:text-white">
                   {siteConfig.phone}
                 </a>
               </li>
-              <li className="flex items-start gap-3">
-                <MessageSquare className="mt-1 h-4 w-4 text-white/50" aria-hidden />
-                <a href={siteConfig.whatsappLink} target="_blank" rel="noreferrer noopener" className="transition-colors duration-150 hover:text-white">
-                  WhatsApp direct
+              <li>
+                <a
+                  href={siteConfig.whatsappLink}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="transition-colors hover:text-white"
+                >
+                  WhatsApp
                 </a>
               </li>
-              <li className="flex items-start gap-3">
-                <MapPin className="mt-1 h-4 w-4 text-white/50" aria-hidden />
-                <a href={siteConfig.googleMapsLink} target="_blank" rel="noreferrer noopener" className="transition-colors duration-150 hover:text-white">
-                  {siteConfig.address}
+              <li className="text-white/40">{siteConfig.address}</li>
+            </ul>
+          </div>
+
+          {/* Social */}
+          <div>
+            <h4 className="text-sm font-medium text-white/40">Suivez-nous</h4>
+            <ul className="mt-4 space-y-2 text-sm text-white/60">
+              <li>
+                <a
+                  href={siteConfig.instagramLink}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="transition-colors hover:text-white"
+                >
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a
+                  href={siteConfig.facebookLink}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="transition-colors hover:text-white"
+                >
+                  Facebook
                 </a>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-white/10 py-8 text-center text-xs text-white/40">
-          <div className="uppercase tracking-[0.3em]">
-            {new Date().getFullYear()} © {siteConfig.name}. Tous droits reserves.
-          </div>
-          <div className="mt-2 text-[10px] tracking-wider">
-            Developed by{" "}
+        {/* Bottom bar */}
+        <div className="border-t border-white/5 py-6">
+          <div className="flex flex-col items-center justify-between gap-4 text-xs text-white/30 sm:flex-row">
+            <span>© {new Date().getFullYear()} {siteConfig.name}</span>
             <a
               href="https://www.sitedz.store"
               target="_blank"
               rel="noreferrer noopener"
-              className="text-white/60 transition-colors duration-200 hover:text-white"
+              className="transition-colors hover:text-white/50"
             >
-              www.sitedz.store
+              sitedz.store
             </a>
           </div>
         </div>

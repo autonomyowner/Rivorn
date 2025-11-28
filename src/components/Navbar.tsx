@@ -3,12 +3,10 @@
 import Link from "next/link";
 import { useEffect, useState, memo, useCallback, type ReactElement } from "react";
 import { Menu, X } from "lucide-react";
-import { siteConfig } from "@/config/site";
 
 const links = [
   { href: "/", label: "Accueil" },
   { href: "/collection", label: "Collection" },
-  { href: "/about", label: "La marque" },
   { href: "/shipping", label: "Livraison" },
   { href: "/contact", label: "Contact" },
 ];
@@ -25,7 +23,7 @@ function Navbar(): ReactElement {
 
       ticking = true;
       requestAnimationFrame(() => {
-        setScrolled(window.scrollY > 4);
+        setScrolled(window.scrollY > 20);
         ticking = false;
       });
     }
@@ -45,31 +43,28 @@ function Navbar(): ReactElement {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-black/80 backdrop-blur-xl border-b border-white/10 shadow-[0_12px_40px_-15px_rgba(0,0,0,0.65)]"
+          ? "bg-black/90 backdrop-blur-md"
           : "bg-transparent"
       }`}
     >
       <nav
-        className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
+        className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:h-20 lg:px-8"
         aria-label="Navigation principale"
       >
-        <Link href="/" className="flex items-center gap-3">
-          <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
-            DNA WATCHES
-          </span>
-          <span className="text-2xl font-bold uppercase tracking-[0.3em] text-white">
-            MAGASIN
-          </span>
+        {/* Logo - simplified */}
+        <Link href="/" className="text-lg font-semibold tracking-tight text-white">
+          Rivorn
         </Link>
 
-        <div className="hidden items-center gap-6 md:flex">
+        {/* Desktop nav */}
+        <div className="hidden items-center gap-8 md:flex">
           {links.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm font-medium uppercase tracking-[0.18em] text-white/70 transition-colors duration-200 hover:text-white"
+              className="text-sm text-white/60 transition-colors duration-200 hover:text-white"
             >
               {item.label}
             </Link>
@@ -77,42 +72,45 @@ function Navbar(): ReactElement {
 
           <Link
             href="/collection"
-            className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white text-sm font-semibold uppercase tracking-[0.25em] text-black transition-all duration-300 hover:-translate-y-0.5 hover:border-white hover:bg-white"
+            className="rounded-full bg-white px-5 py-2 text-sm font-medium text-black transition-opacity hover:opacity-90"
           >
-            <span className="px-6 py-3">Acheter</span>
+            Acheter
           </Link>
         </div>
 
+        {/* Mobile menu button */}
         <button
-          aria-label="Ouvrir le menu"
+          aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
           onClick={handleToggleMenu}
-          className="inline-flex items-center justify-center rounded-full border border-white/20 p-3 text-white hover:border-white/40 md:hidden"
+          className="flex h-10 w-10 items-center justify-center text-white md:hidden"
         >
-          {isOpen ? <X aria-hidden size={22} /> : <Menu aria-hidden size={22} />}
+          {isOpen ? <X size={20} aria-hidden /> : <Menu size={20} aria-hidden />}
         </button>
       </nav>
 
+      {/* Mobile menu */}
       {isOpen && (
-        <div className="border-t border-white/10 bg-black/95 text-white md:hidden">
-          <div className="space-y-3 px-4 py-6">
-            <div className="text-xs uppercase tracking-[0.3em] text-white/60">{siteConfig.tagline}</div>
+        <div className="border-t border-white/5 bg-black/95 backdrop-blur-md md:hidden">
+          <div className="space-y-1 px-4 py-4">
             {links.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={handleCloseMenu}
-                className="block rounded-xl border border-white/5 bg-white/5 px-4 py-4 text-sm font-semibold uppercase tracking-[0.2em] transition-all duration-200 hover:border-white/40 hover:bg-white/10"
+                className="block px-3 py-3 text-sm text-white/70 transition-colors hover:text-white"
               >
                 {item.label}
               </Link>
             ))}
-            <Link
-              href="/collection"
-              onClick={handleCloseMenu}
-              className="block rounded-full bg-white px-6 py-4 text-center text-sm font-semibold uppercase tracking-[0.25em] text-black transition-all duration-200 hover:-translate-y-0.5"
-            >
-              Acheter maintenant
-            </Link>
+            <div className="pt-2">
+              <Link
+                href="/collection"
+                onClick={handleCloseMenu}
+                className="block rounded-full bg-white px-5 py-3 text-center text-sm font-medium text-black"
+              >
+                Acheter
+              </Link>
+            </div>
           </div>
         </div>
       )}

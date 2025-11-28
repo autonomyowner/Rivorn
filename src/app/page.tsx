@@ -1,6 +1,6 @@
 import type { ReactElement } from "react";
 import Link from "next/link";
-import { ArrowUpRight, ShieldCheck, Package, Sparkles, Instagram } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Container from "@/components/Container";
 import Section from "@/components/Section";
 import Hero from "@/components/Hero";
@@ -9,53 +9,22 @@ import Reveal from "@/components/Reveal";
 import OptimizedImage from "@/components/OptimizedImage";
 import ProductCard from "@/components/ProductCard";
 import { products } from "@/data/products";
-import { siteConfig } from "@/config/site";
 
 const featuredProducts = products.slice(0, 4);
 
-const brandPillars = [
+const collections = [
   {
-    title: "Montres originales",
-    description: "Nous proposons uniquement des montres 100% originales avec garantie, sélectionnées parmi les meilleures marques.",
-    icon: Sparkles,
-  },
-  {
-    title: "Qualite premium",
-    description: "Sélection rigoureuse, contrôle qualité et packaging soigné. Chaque montre est vérifiée avant expédition.",
-    icon: ShieldCheck,
-  },
-  {
-    title: "Livraison 58 wilayas",
-    description: "Expédition express via partenaires fiables, paiement à la livraison disponible partout en Algérie.",
-    icon: Package,
-  },
-];
-
-const drops = [
-  {
-    title: "Collection Naviforce",
-    description: "Montres Naviforce originales, design moderne et fonctionnalités avancées.",
-    status: "Disponible maintenant",
+    title: "Naviforce",
     image: "/watches/1.jpg",
   },
   {
-    title: "Collection Festina",
-    description: "Montres Festina mécaniques, étanches avec bracelet acier inoxydable.",
-    status: "En stock",
+    title: "Festina",
     image: "/watches/2.jpg",
   },
   {
-    title: "Collection TOMI",
-    description: "Montres TOMI originales, étanches, waterproof avec bracelet en cuir premium.",
-    status: "Disponible",
+    title: "TOMI",
     image: "/watches/4.jpg",
   },
-];
-
-const communityShots = [
-  "/watches/3.jpg",
-  "/watches/5.jpg",
-  "/watches/7.jpg",
 ];
 
 export default function Home(): ReactElement {
@@ -63,28 +32,30 @@ export default function Home(): ReactElement {
     <>
       <Hero />
 
+      {/* Featured Products - Clean grid */}
       <Section className="bg-background">
         <Container>
           <Reveal>
-            <div className="mb-12 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <div className="mb-16 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
               <div>
-                <span className="text-xs uppercase tracking-[0.35em] text-white/50">Collections</span>
-                <h2 className="mt-3 text-3xl font-semibold uppercase tracking-[0.25em] text-white sm:text-4xl">
-                  Selection DNA WATCHES
+                <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+                  Selection
                 </h2>
+                <p className="mt-2 text-white/50">Notre sélection de montres originales</p>
               </div>
-              <Button asChild variant="ghost" size="sm">
-                <Link href="/collection" className="flex items-center gap-2">
-                  Voir toute la collection
-                  <ArrowUpRight className="h-4 w-4" aria-hidden />
-                </Link>
-              </Button>
+              <Link
+                href="/collection"
+                className="group inline-flex items-center gap-2 text-sm text-white/60 transition-colors hover:text-white"
+              >
+                Voir tout
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />
+              </Link>
             </div>
           </Reveal>
 
           <div className="grid gap-6 md:grid-cols-2">
             {featuredProducts.map((product, index) => (
-              <Reveal key={product.id} delay={index * 100}>
+              <Reveal key={product.id} delay={index * 80}>
                 <ProductCard product={product} highlight={index === 0} />
               </Reveal>
             ))}
@@ -92,186 +63,136 @@ export default function Home(): ReactElement {
         </Container>
       </Section>
 
+      {/* Collections - Minimal cards */}
       <Section className="bg-background-secondary">
         <Container>
-          <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr] lg:items-center">
+          <Reveal>
+            <div className="mb-16 max-w-xl">
+              <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+                Collections
+              </h2>
+              <p className="mt-3 text-white/50">
+                Des marques sélectionnées pour leur qualité et leur authenticité
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="grid gap-4 sm:grid-cols-3 lg:gap-6">
+            {collections.map((collection, index) => (
+              <Reveal key={collection.title} delay={index * 100}>
+                <Link href="/collection" className="group block">
+                  <div className="relative aspect-[3/4] overflow-hidden rounded-2xl">
+                    <OptimizedImage
+                      src={collection.image}
+                      alt={collection.title}
+                      width={600}
+                      height={800}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      quality={85}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-6">
+                      <h3 className="text-lg font-semibold text-white">{collection.title}</h3>
+                    </div>
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      {/* About / Trust - Simple, no nested cards */}
+      <Section className="bg-background">
+        <Container>
+          <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
             <Reveal>
               <div className="space-y-6">
-                <span className="text-xs uppercase tracking-[0.35em] text-white/50">Manifesto</span>
-                <h2 className="text-3xl font-semibold uppercase tracking-[0.25em] text-white sm:text-4xl">
-                  ADN DNA WATCHES
+                <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+                  Pourquoi Rivorn
                 </h2>
-                <p className="max-w-xl text-sm leading-relaxed text-white/70 sm:text-base">
-                  Magasin de bijoux et de montres spécialisé dans les montres originales. Nous sélectionnons avec soin chaque
-                  montre parmi les meilleures marques pour vous offrir qualité, authenticité et élégance. Notre engagement est
-                  de vous proposer des montres certifiées avec garantie.
+                <p className="text-white/60 leading-relaxed">
+                  Spécialisé dans les montres originales avec garantie. Chaque pièce est vérifiée
+                  avant expédition pour vous garantir qualité et authenticité.
                 </p>
-                <ul className="space-y-4 text-sm text-white/70">
-                  <li className="flex items-center gap-3">
-                    <span className="inline-flex h-2 w-2 rounded-full bg-[#006233]" aria-hidden />
-                    Produits 100% originaux avec garantie et certification.
+
+                <ul className="space-y-4 text-white/70">
+                  <li className="flex items-start gap-3">
+                    <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#006233]" aria-hidden />
+                    <span>Produits 100% originaux avec garantie</span>
                   </li>
-                  <li className="flex items-center gap-3">
-                    <span className="inline-flex h-2 w-2 rounded-full bg-[#d21034]" aria-hidden />
-                    Sélection parmi les meilleures marques: Naviforce, Festina, Rolex, TOMI.
+                  <li className="flex items-start gap-3">
+                    <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#006233]" aria-hidden />
+                    <span>Livraison 58 wilayas, paiement à la livraison</span>
                   </li>
-                  <li className="flex items-center gap-3">
-                    <span className="inline-flex h-2 w-2 rounded-full bg-[#c9a961]" aria-hidden />
-                    Service client réactif et suivi de commande en temps réel.
+                  <li className="flex items-start gap-3">
+                    <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#006233]" aria-hidden />
+                    <span>Support WhatsApp 7j/7</span>
                   </li>
                 </ul>
-              </div>
-            </Reveal>
 
-            <Reveal delay={150}>
-              <div className="relative overflow-hidden rounded-[36px] border border-white/10 bg-white/5 p-6">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#00623333,transparent_60%)]" aria-hidden />
-                <div className="space-y-6">
-                  {brandPillars.map((pillar) => (
-                    <div
-                      key={pillar.title}
-                      className="rounded-3xl border border-white/10 bg-black/60 p-6 backdrop-blur transition-colors duration-200 hover:border-white/30"
-                    >
-                      <pillar.icon className="mb-4 h-6 w-6 text-white/60" aria-hidden />
-                      <h3 className="text-lg font-semibold uppercase tracking-[0.2em] text-white">{pillar.title}</h3>
-                      <p className="mt-3 text-sm leading-relaxed text-white/60">{pillar.description}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </Reveal>
-          </div>
-        </Container>
-      </Section>
-
-      <Section className="bg-background">
-        <Container>
-          <Reveal>
-            <div className="mb-12 space-y-4">
-              <span className="text-xs uppercase tracking-[0.35em] text-white/50">Nouvelles arrivées</span>
-              <h2 className="text-3xl font-semibold uppercase tracking-[0.25em] text-white sm:text-4xl">
-                Collections disponibles
-              </h2>
-            </div>
-          </Reveal>
-
-          <div className="grid gap-6 lg:grid-cols-3">
-            {drops.map((drop, index) => (
-              <Reveal key={drop.title} delay={index * 120}>
-                <div className="flex flex-col gap-6 rounded-[32px] border border-white/10 bg-white/5 p-6">
-                  <OptimizedImage
-                    src={drop.image}
-                    alt={drop.title}
-                    width={1200}
-                    height={192}
-                    className="h-48 w-full rounded-[24px] border border-white/10"
-                    quality={85}
-                  />
-                  <div className="space-y-4">
-                    <div className="text-xs uppercase tracking-[0.3em] text-[#c9a961]">{drop.status}</div>
-                    <h3 className="text-xl font-semibold uppercase tracking-[0.2em] text-white">{drop.title}</h3>
-                    <p className="text-sm leading-relaxed text-white/60">{drop.description}</p>
-                  </div>
-                  <Button asChild variant="ghost" size="sm">
-                    <Link href="/collection" className="flex items-center gap-2">
-                      Rejoindre la liste
-                      <ArrowUpRight className="h-4 w-4" aria-hidden />
-                    </Link>
+                <div className="flex flex-col gap-3 pt-4 sm:flex-row">
+                  <Button asChild size="lg">
+                    <Link href="/collection">Commander</Link>
+                  </Button>
+                  <Button asChild variant="ghost" size="lg">
+                    <Link href="/contact">Contact</Link>
                   </Button>
                 </div>
-              </Reveal>
-            ))}
+              </div>
+            </Reveal>
+
+            <Reveal delay={100}>
+              <div className="relative aspect-square overflow-hidden rounded-2xl lg:rounded-3xl">
+                <OptimizedImage
+                  src="/watches/3.jpg"
+                  alt="Rivorn Watch"
+                  width={800}
+                  height={800}
+                  className="h-full w-full object-cover"
+                  quality={90}
+                />
+                <div className="absolute inset-0 bg-gradient-to-tr from-black/20 via-transparent to-transparent" />
+              </div>
+            </Reveal>
           </div>
         </Container>
       </Section>
 
+      {/* Shipping - Condensed */}
       <Section className="bg-background-secondary">
         <Container>
           <Reveal>
-            <div className="mb-8 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-              <div>
-                <span className="text-xs uppercase tracking-[0.35em] text-white/50">Galerie</span>
-                <h2 className="mt-3 text-3xl font-semibold uppercase tracking-[0.25em] text-white sm:text-4xl">
-                  Montres DNA WATCHES
-                </h2>
+            <div className="mx-auto max-w-2xl text-center">
+              <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+                Livraison rapide
+              </h2>
+              <p className="mt-4 text-white/60">
+                Expédition express 24-48h vers les 58 wilayas. Paiement à la livraison disponible.
+              </p>
+
+              <div className="mt-10 flex flex-wrap justify-center gap-12 text-center">
+                <div>
+                  <div className="text-3xl font-semibold text-white">24-48h</div>
+                  <div className="mt-1 text-sm text-white/50">Express</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-semibold text-white">58</div>
+                  <div className="mt-1 text-sm text-white/50">Wilayas</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-semibold text-white">7j/7</div>
+                  <div className="mt-1 text-sm text-white/50">Support</div>
+                </div>
               </div>
-              <Button asChild variant="outline" size="sm">
-                <Link href={siteConfig.instagramLink} target="_blank" rel="noreferrer noopener" className="flex items-center gap-2">
-                  Suivre sur Instagram
-                  <Instagram className="h-4 w-4" aria-hidden />
-                </Link>
-              </Button>
+
+              <div className="mt-10">
+                <Button asChild size="lg">
+                  <Link href="/shipping">En savoir plus</Link>
+                </Button>
+              </div>
             </div>
           </Reveal>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {communityShots.map((image, index) => (
-              <Reveal key={image} delay={index * 120}>
-                <div className="relative overflow-hidden rounded-[32px] border border-white/10">
-                  <OptimizedImage src={image} alt="Montre DNA WATCHES" width={1200} height={288} className="h-72 w-full" quality={85} />
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </Container>
-      </Section>
-
-      <Section className="bg-background">
-        <Container>
-          <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">
-            <Reveal>
-              <div className="space-y-6">
-                <span className="text-xs uppercase tracking-[0.35em] text-white/50">Livraison express</span>
-                <h2 className="text-3xl font-semibold uppercase tracking-[0.25em] text-white sm:text-4xl">
-                  Livraison 58 wilayas
-                </h2>
-                <p className="max-w-xl text-sm leading-relaxed text-white/70 sm:text-base">
-                  Nous livrons partout en Algérie via nos partenaires logistiques. Paiement à la livraison disponible,
-                  suivi en temps réel et support client WhatsApp 7 j/7.
-                </p>
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div className="rounded-3xl border border-white/10 bg-white/5 p-5">
-                    <div className="text-xs uppercase tracking-[0.3em] text-white/50">Express</div>
-                    <div className="mt-2 text-lg font-semibold text-white">24/48h sur stock</div>
-                  </div>
-                  <div className="rounded-3xl border border-white/10 bg-white/5 p-5">
-                    <div className="text-xs uppercase tracking-[0.3em] text-white/50">Precommande</div>
-                    <div className="mt-2 text-lg font-semibold text-white">Production 10 jours</div>
-                  </div>
-                </div>
-                <div className="flex flex-col gap-4 sm:flex-row">
-                  <Button asChild size="lg">
-                    <Link href="/collection">Commander maintenant</Link>
-                  </Button>
-                  <Button asChild variant="outline" size="lg">
-                    <Link href="/contact">Parler avec le support</Link>
-                  </Button>
-                </div>
-              </div>
-            </Reveal>
-
-            <Reveal delay={150}>
-              <div className="relative overflow-hidden rounded-[36px] border border-white/10 bg-white/5 p-6">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,#d2103422,transparent_60%)]" aria-hidden />
-                <div className="space-y-6">
-                  <div className="rounded-3xl border border-white/10 bg-black/60 p-6">
-                    <div className="text-xs uppercase tracking-[0.3em] text-[#c9a961]">Service client</div>
-                    <div className="mt-3 text-lg font-semibold text-white">Support WhatsApp 7 j/7</div>
-                    <p className="mt-3 text-sm leading-relaxed text-white/60">
-                      Response moyenne 5 minutes de 9h a 22h. Suivi colis, conseils taille, mise a jour drops.
-                    </p>
-                  </div>
-                  <div className="rounded-3xl border border-white/10 bg-black/60 p-6">
-                    <div className="text-xs uppercase tracking-[0.3em] text-[#c9a961]">Retours faciles</div>
-                    <div className="mt-3 text-lg font-semibold text-white">14 jours pour echange</div>
-                    <p className="mt-3 text-sm leading-relaxed text-white/60">
-                      Essayez votre casquette. Echange possible sous 14 jours si la piece est neuve et etiquettes
-                      conservees.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-          </div>
         </Container>
       </Section>
     </>

@@ -2,7 +2,6 @@ import Link from "next/link";
 import type { ReactElement } from "react";
 import { ArrowUpRight } from "lucide-react";
 import OptimizedImage from "@/components/OptimizedImage";
-import Button from "@/components/ui/Button";
 import type { Product } from "@/data/products";
 
 type ProductCardProps = {
@@ -13,68 +12,65 @@ type ProductCardProps = {
 export default function ProductCard({ product, highlight = false }: ProductCardProps): ReactElement {
   return (
     <article
-      className={`group relative flex h-full flex-col overflow-hidden rounded-[32px] border border-white/10 bg-white/5 p-4 transition-transform duration-300 hover:-translate-y-2 hover:border-white/20 hover:shadow-[0_25px_60px_-30px_rgba(0,0,0,0.7)] ${
+      className={`group relative flex h-full flex-col overflow-hidden rounded-2xl bg-white/[0.03] transition-all duration-300 hover:bg-white/[0.06] ${
         highlight ? "lg:col-span-2" : ""
       }`}
     >
-      {product.badges && product.badges.length > 0 && (
-        <div className="absolute left-6 top-6 flex gap-2">
-          {product.badges.map((badge) => (
-            <span
-              key={badge}
-              className="rounded-full border border-white/15 bg-black/70 px-4 py-1 text-[10px] font-semibold uppercase tracking-[0.35em] text-white/70"
-            >
-              {badge}
-            </span>
-          ))}
-        </div>
-      )}
+      {/* Image */}
+      <Link href={`/product/${product.slug}`} className="block overflow-hidden">
+        <div className="relative aspect-[4/3] overflow-hidden">
+          <OptimizedImage
+            src={product.images[0]?.src ?? ""}
+            alt={product.images[0]?.alt ?? product.name}
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            quality={85}
+          />
+          {/* Subtle gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
 
-      <Link href={`/product/${product.slug}`} className="block">
-        <OptimizedImage
-          src={product.images[0]?.src ?? ""}
-          alt={product.images[0]?.alt ?? product.name}
-          className="h-64 w-full rounded-[28px] border border-white/10 bg-black/50 object-cover"
-          quality={85}
-        />
+          {/* Badge - simplified */}
+          {product.badges && product.badges.length > 0 && (
+            <div className="absolute left-4 top-4">
+              <span className="rounded-full bg-black/60 px-3 py-1 text-[10px] font-medium uppercase tracking-wide text-white/80 backdrop-blur-sm">
+                {product.badges[0]}
+              </span>
+            </div>
+          )}
+
+          {/* Price overlay on image */}
+          <div className="absolute bottom-4 right-4">
+            <span className="text-lg font-semibold text-white drop-shadow-lg">
+              {product.price.toLocaleString("fr-DZ")} {product.currency}
+            </span>
+          </div>
+        </div>
       </Link>
 
-      <div className="flex grow flex-col gap-6 p-4">
-        <div className="space-y-3">
-          <div className="text-[11px] uppercase tracking-[0.35em] text-white/50">{product.collections.join(" • ")}</div>
-          <h3 className="text-xl font-semibold uppercase tracking-[0.2em] text-white">
-            <Link href={`/product/${product.slug}`}>{product.name}</Link>
+      {/* Content - simplified */}
+      <div className="flex grow flex-col gap-4 p-5">
+        <div>
+          <span className="text-xs text-white/40">{product.collections[0]}</span>
+          <h3 className="mt-1 text-base font-semibold text-white">
+            <Link href={`/product/${product.slug}`} className="hover:text-white/80 transition-colors">
+              {product.name}
+            </Link>
           </h3>
-          <p className="text-sm leading-relaxed text-white/60">{product.shortDescription}</p>
+          <p className="mt-2 text-sm text-white/50 line-clamp-2">{product.shortDescription}</p>
         </div>
 
-        <div className="mt-auto flex items-center justify-between text-sm">
-          <div className="space-y-1">
-            <div className="text-xs uppercase tracking-[0.3em] text-white/50">Disponibilite</div>
-            <div className="uppercase tracking-[0.2em] text-white">
-              {product.availability === "in-stock" && "En stock"}
-              {product.availability === "limited" && "Edition limitee"}
-              {product.availability === "preorder" && "Precommande"}
-            </div>
-          </div>
-          <div className="text-right">
-            <div className="text-xs uppercase tracking-[0.3em] text-white/50">Prix</div>
-            <div className="text-lg font-semibold text-white">
-              {product.price.toLocaleString("fr-DZ")} {product.currency}
-            </div>
-          </div>
-        </div>
+        <div className="mt-auto flex items-center justify-between">
+          <span className="text-xs text-white/50">
+            {product.availability === "in-stock" && "En stock"}
+            {product.availability === "limited" && "Limité"}
+            {product.availability === "preorder" && "Précommande"}
+          </span>
 
-        <div className="flex items-center justify-between gap-4">
-          <Button asChild size="sm">
-            <Link href={`/product/${product.slug}`}>Voir le produit</Link>
-          </Button>
           <Link
             href={`/product/${product.slug}`}
-            className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-white/60 transition-colors duration-200 hover:text-white"
+            className="group/link inline-flex items-center gap-1.5 text-sm font-medium text-white/70 transition-colors hover:text-white"
           >
-            Details
-            <ArrowUpRight className="h-4 w-4" aria-hidden />
+            Voir
+            <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" aria-hidden />
           </Link>
         </div>
       </div>

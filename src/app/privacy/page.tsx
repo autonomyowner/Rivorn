@@ -4,8 +4,8 @@ import Section from "@/components/Section";
 import Reveal from "@/components/Reveal";
 
 export const metadata = {
-  title: "Confidentialite - DNA WATCHES Magasin",
-  description: "Politique de traitement des données personnelles pour le magasin DNA WATCHES.",
+  title: "Confidentialite - Rivorn Luxury Watches",
+  description: "Privacy policy for Rivorn Luxury Watches.",
 };
 
 const sections = [
@@ -53,8 +53,8 @@ export default function PrivacyPage(): ReactElement {
               <span className="text-xs uppercase tracking-[0.35em] text-white/50">Confidentialite</span>
               <h1 className="text-4xl font-semibold uppercase tracking-[0.25em]">Politique de donnees</h1>
               <p className="text-sm leading-relaxed text-white/70">
-                DNA WATCHES Magasin protège votre vie privée. Cette page explique quelles données nous collectons, comment
-                nous les utilisons et vos droits.
+                Rivorn protects your privacy. This page explains what data we collect, how
+                we use it and your rights.
               </p>
             </div>
           </Reveal>
@@ -93,7 +93,7 @@ export default function PrivacyPage(): ReactElement {
               <a href="/contact" className="text-white underline">
                 Contact
               </a>{" "}
-              ou envoyez un email à dnawatches.business@gmail.com.
+              ou envoyez un email à contact@rivorn.com.
             </div>
           </Reveal>
         </Container>

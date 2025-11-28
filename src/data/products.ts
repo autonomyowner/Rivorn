@@ -16,7 +16,7 @@ export type Product = {
 
 export const products: Product[] = [
   {
-    id: "dna-001",
+    id: "rvn-001",
     name: "Naviforce Double Montre",
     slug: "naviforce-double-montre",
     price: 15900,
@@ -50,7 +50,7 @@ export const products: Product[] = [
     collections: ["montres homme", "collection premium"],
   },
   {
-    id: "dna-002",
+    id: "rvn-002",
     name: "MONTRE FESTINA MOTEUR MÉCANIQUE",
     slug: "montre-festina-moteur-mecanique",
     price: 18900,
@@ -84,7 +84,7 @@ export const products: Product[] = [
     collections: ["montres mécaniques", "collection Festina"],
   },
   {
-    id: "dna-003",
+    id: "rvn-003",
     name: "Montre Rolex",
     slug: "montre-rolex",
     price: 45000,
@@ -118,7 +118,7 @@ export const products: Product[] = [
     collections: ["luxe", "montres de prestige"],
   },
   {
-    id: "dna-004",
+    id: "rvn-004",
     name: "MONTRE TOMI ORIGINAL",
     slug: "montre-tomi-original-1",
     price: 12900,
@@ -152,7 +152,7 @@ export const products: Product[] = [
     collections: ["montres sport", "collection TOMI"],
   },
   {
-    id: "dna-005",
+    id: "rvn-005",
     name: "MONTRE TOMI ORIGINAL",
     slug: "montre-tomi-original-2",
     price: 12900,
@@ -186,7 +186,7 @@ export const products: Product[] = [
     collections: ["montres sport", "collection TOMI"],
   },
   {
-    id: "dna-006",
+    id: "rvn-006",
     name: "MONTRE TOMI ORIGINAL",
     slug: "montre-tomi-original-3",
     price: 12900,
@@ -220,7 +220,7 @@ export const products: Product[] = [
     collections: ["montres sport", "collection TOMI"],
   },
   {
-    id: "dna-007",
+    id: "rvn-007",
     name: 'Montre Homme "NAVIFORCE" Original',
     slug: "montre-homme-naviforce-original",
     price: 14900,

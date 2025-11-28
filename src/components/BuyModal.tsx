@@ -77,7 +77,7 @@ export default function BuyModal({ product, isOpen, onClose }: BuyModalProps): R
 
     // Format WhatsApp message
     const message = encodeURIComponent(
-      `🎯 Commande DNA WATCHES\n\n` +
+      `🎯 Commande Rivorn\n\n` +
       `📦 Produit: ${product.name}\n` +
       `💰 Prix: ${product.price.toLocaleString("fr-DZ")} ${product.currency}\n` +
       `🆔 Référence: ${product.id}\n\n` +

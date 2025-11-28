@@ -43,8 +43,8 @@ const faqItems = [
 ];
 
 export const metadata = {
-  title: "Livraison - DNA WATCHES Magasin",
-  description: "Infos livraison DNA WATCHES Magasin: délais, frais et conditions pour les 58 wilayas.",
+  title: "Livraison - Rivorn Luxury Watches",
+  description: "Rivorn delivery info: delays, fees and conditions for all 58 wilayas.",
 };
 
 export default function ShippingPage(): ReactElement {
@@ -61,8 +61,8 @@ export default function ShippingPage(): ReactElement {
               </div>
               <h1 className="text-4xl font-semibold uppercase tracking-[0.25em] sm:text-5xl">Livraison 58 wilayas</h1>
               <p className="text-sm leading-relaxed text-white/70 sm:text-base">
-                DNA WATCHES expédie chaque commande depuis Alger avec des partenaires sélectionnés. Paiement à la livraison
-                disponible partout. Suivi en temps réel via WhatsApp.
+                Rivorn ships every order from Algiers with selected partners. Cash on delivery
+                available everywhere. Real-time tracking via WhatsApp.
               </p>
             </div>
           </Reveal>

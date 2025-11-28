@@ -35,7 +35,7 @@ const contactMethods = [
   },
   {
     icon: Phone,
-    label: "Hotline DNA WATCHES",
+    label: "Rivorn Hotline",
     description: "Du lundi au samedi, 9h - 22h.",
     value: siteConfig.phone,
     href: `tel:${siteConfig.phone}`,
@@ -90,7 +90,7 @@ function ContactInner(): ReactElement {
                 <span className="h-2 w-2 rounded-full bg-[#d21034]" />
               </div>
               <h1 className="text-4xl font-semibold uppercase tracking-[0.25em] text-white sm:text-5xl">
-                Support DNA WATCHES
+                Rivorn Support
               </h1>
               <p className="text-sm leading-relaxed text-white/70 sm:text-base">
                 Besoin d&apos;infos sur une montre, une collection ou la livraison dans votre wilaya ? Écrivez-nous. L&apos;équipe
